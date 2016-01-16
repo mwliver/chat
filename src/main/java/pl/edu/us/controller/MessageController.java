@@ -18,13 +18,13 @@ public class MessageController {
     @Autowired
     MessageDao messageDao;
 
-    @RequestMapping(value = "/save/message", method = RequestMethod.POST)
+    @RequestMapping(value = "/message/save", method = RequestMethod.POST)
     public ResponseEntity<String> saveMessage(@RequestBody Message message) {
         messageDao.save(message);
         return new ResponseEntity<String>(HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/find/message", method = RequestMethod.GET)
+    @RequestMapping(value = "/message/list", method = RequestMethod.GET)
     public List<Message> findMessage() {
         return (List<Message>) messageDao.findAll();
     }

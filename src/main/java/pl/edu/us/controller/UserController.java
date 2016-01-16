@@ -18,14 +18,20 @@ public class UserController {
     @Autowired
     UserDao userDao;
 
-    @RequestMapping(value = "/find/user", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/list", method = RequestMethod.GET)
     public List<User> getUsers() {
         return (List<User>) userDao.findAll();
     }
 
-    @RequestMapping(value = "/save/user", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/save", method = RequestMethod.POST)
     public ResponseEntity<String> saveUser(@RequestBody User user) {
         userDao.save(user);
         return new ResponseEntity<String>(HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/user/remove", method = RequestMethod.POST)
+    public ResponseEntity<String> removeUser(@RequestBody User user) {
+        userDao.delete(user);
+        return new ResponseEntity<String>(HttpStatus.OK);
     }
 }

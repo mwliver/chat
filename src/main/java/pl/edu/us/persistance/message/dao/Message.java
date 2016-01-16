@@ -1,12 +1,15 @@
 package pl.edu.us.persistance.message.dao;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import pl.edu.us.persistance.client.dao.User;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "message")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Message {
 
     @Id
@@ -18,6 +21,8 @@ public class Message {
     private User user;
 
     private String text;
+
+    private Date createDate;
 
     public Long getId() {
         return id;
@@ -41,5 +46,13 @@ public class Message {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }
